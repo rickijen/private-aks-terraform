@@ -225,15 +225,17 @@ resource "azurerm_kubernetes_cluster" "privateaks" {
       #   subnet_id = azurerm_subnet.appgw.id
       # }
 
-      #kube_dashboard {
-      #  enabled = true
-      #}
+      kube_dashboard {
+        enabled = true
+      }
   }
 
   network_profile {
     # docker_bridge_cidr = var.network_docker_bridge_cidr
     # dns_service_ip     = var.network_dns_service_ip
-    network_plugin     = "kubenet"
+    network_plugin     = "azure" #CNI
+    network_mode       = "transparent" # default
+    network_policy     = "azure"
     outbound_type      = "userDefinedRouting"
     # service_cidr       = var.network_service_cidr
     load_balancer_sku  = "standard"
