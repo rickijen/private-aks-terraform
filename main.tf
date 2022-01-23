@@ -95,8 +95,8 @@ module "firewall" {
   source         = "./modules/firewall"
   resource_group = data.terraform_remote_state.rg.outputs.resource_group_vnet_name
   location       = data.terraform_remote_state.rg.outputs.location
-  pip_name       = "azureFirewalls-ip"
-  fw_name        = "kubenetfw"
+  pip_name       = "${random_pet.prefix.id}-fw-ip"
+  fw_name        = "${random_pet.prefix.id}-fw"
   subnet_id      = module.hub_network.subnet_ids["AzureFirewallSubnet"]
 }
 
@@ -104,8 +104,8 @@ module "routetable" {
   source             = "./modules/route_table"
   resource_group     = data.terraform_remote_state.rg.outputs.resource_group_vnet_name
   location           = data.terraform_remote_state.rg.outputs.location
-  rt_name            = "kubenetfw_fw_rt"
-  r_name             = "kubenetfw_fw_r"
+  rt_name            = "${random_pet.prefix.id}_fw_rt"
+  r_name             = "${random_pet.prefix.id}_fw_r"
   firewal_private_ip = module.firewall.fw_private_ip
   subnet_id          = module.kube_network.subnet_ids["aks-subnet"]
 }
