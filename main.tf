@@ -4,7 +4,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.87.0"
+      version = "=2.93.0"
     }
   }
 }
@@ -44,7 +44,7 @@ resource "azurerm_user_assigned_identity" "uai" {
   resource_group_name = data.terraform_remote_state.rg.outputs.resource_group_kube_name
   location            = data.terraform_remote_state.rg.outputs.location
 
-  name = "uai-aks"
+  name = "uai-${random_pet.prefix.id}-aks"
 }
 
 module "hub_network" {
@@ -225,9 +225,9 @@ resource "azurerm_kubernetes_cluster" "privateaks" {
       #   subnet_id = azurerm_subnet.appgw.id
       # }
 
-      kube_dashboard {
-        enabled = true
-      }
+      #kube_dashboard {
+      #  enabled = true
+      #}
   }
 
   network_profile {
