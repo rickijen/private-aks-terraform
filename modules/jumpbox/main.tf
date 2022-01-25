@@ -91,7 +91,7 @@ resource "azurerm_windows_virtual_machine" "jumpbox-w" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2019-Datacenter"
+    sku       = "2019-Datacenter-with-Containers"
     version   = "latest"
   }
 }
