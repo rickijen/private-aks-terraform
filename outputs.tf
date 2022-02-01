@@ -21,3 +21,7 @@ output "hub_vnet_id" {
 output "aks_subnet_prefix" {
   value = "10.10.5.0/24"
 }
+
+output "aks_identity_id" {
+  value = azurerm_user_assigned_identity.uai.principal_id
+}
