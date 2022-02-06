@@ -99,7 +99,7 @@ module "firewall" {
   fw_name        = "${random_pet.prefix.id}-fw"
   subnet_id      = module.hub_network.subnet_ids["AzureFirewallSubnet"]
 }
-/*
+
 module "routetable" {
   source             = "./modules/route_table"
   resource_group     = data.terraform_remote_state.rg.outputs.resource_group_vnet_name
@@ -109,7 +109,7 @@ module "routetable" {
   firewal_private_ip = module.firewall.fw_private_ip
   subnet_id          = module.kube_network.subnet_ids["aks-subnet"]
 }
-*/
+
 resource "random_id" "log_analytics_workspace_name_suffix" {
     byte_length = 8
 }
