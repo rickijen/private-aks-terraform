@@ -249,12 +249,13 @@ resource "azurerm_role_assignment" "netcontributor-subnet" {
   scope                = module.kube_network.subnet_ids["aks-subnet"]
   principal_id         = azurerm_user_assigned_identity.uai.principal_id
 }
-
+/*
 resource "azurerm_role_assignment" "netcontributor-udr" {
   role_definition_name = "Network Contributor"
   scope                = module.routetable.udr_id
   principal_id         = azurerm_user_assigned_identity.uai.principal_id
 }
+*/
 /*
 # User mode node pool - Linux
 resource "azurerm_kubernetes_cluster_node_pool" "usrpl1" {
