@@ -99,7 +99,7 @@ module "firewall" {
   fw_name        = "${random_pet.prefix.id}-fw"
   subnet_id      = module.hub_network.subnet_ids["AzureFirewallSubnet"]
 }
-
+/*
 module "routetable" {
   source             = "./modules/route_table"
   resource_group     = data.terraform_remote_state.rg.outputs.resource_group_vnet_name
@@ -109,7 +109,7 @@ module "routetable" {
   firewal_private_ip = module.firewall.fw_private_ip
   subnet_id          = module.kube_network.subnet_ids["aks-subnet"]
 }
-
+*/
 resource "random_id" "log_analytics_workspace_name_suffix" {
     byte_length = 8
 }
@@ -141,7 +141,7 @@ resource "azurerm_resource_group_policy_assignment" "auditaks" {
     resource_group_id     = data.terraform_remote_state.rg.outputs.resource_group_kube_id
     policy_definition_id  = var.azure_policy_k8s_initiative
 }
-
+/*
 resource "azurerm_kubernetes_cluster" "privateaks" {
   name                    = "${random_pet.prefix.id}-aks"
   location                = data.terraform_remote_state.rg.outputs.location
@@ -242,7 +242,7 @@ resource "azurerm_kubernetes_cluster" "privateaks" {
 
   depends_on = [module.routetable]
 }
-
+*/
 # RBAC role assignment for the AKS UAI
 resource "azurerm_role_assignment" "netcontributor-subnet" {
   role_definition_name = "Network Contributor"
@@ -255,7 +255,7 @@ resource "azurerm_role_assignment" "netcontributor-udr" {
   scope                = module.routetable.udr_id
   principal_id         = azurerm_user_assigned_identity.uai.principal_id
 }
-
+/*
 # User mode node pool - Linux
 resource "azurerm_kubernetes_cluster_node_pool" "usrpl1" {
   name                  = "upool1"
@@ -276,7 +276,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "usrpl1" {
     environment = "Premera"
   }
 }
-
+*/
+/*
 # Jumpbox for kubectl
 module "jumpbox" {
   source                  = "./modules/jumpbox"
@@ -288,7 +289,7 @@ module "jumpbox" {
   dns_zone_resource_group = azurerm_kubernetes_cluster.privateaks.node_resource_group
   vm_password             = var.jumpbox_password
 }
-
+*/
 /*
 sudo apt-get update && sudo apt-get install -y apt-transport-https gnupg2
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
