@@ -141,7 +141,7 @@ resource "azurerm_resource_group_policy_assignment" "auditaks" {
     resource_group_id     = data.terraform_remote_state.rg.outputs.resource_group_kube_id
     policy_definition_id  = var.azure_policy_k8s_initiative
 }
-/*
+
 resource "azurerm_kubernetes_cluster" "privateaks" {
   name                    = "${random_pet.prefix.id}-aks"
   location                = data.terraform_remote_state.rg.outputs.location
@@ -242,7 +242,7 @@ resource "azurerm_kubernetes_cluster" "privateaks" {
 
   depends_on = [module.routetable]
 }
-*/
+
 # RBAC role assignment for the AKS UAI
 resource "azurerm_role_assignment" "netcontributor-subnet" {
   role_definition_name = "Network Contributor"
