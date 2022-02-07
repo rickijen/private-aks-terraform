@@ -25,3 +25,7 @@ output "aks_subnet_prefix" {
 output "aks_identity_id" {
   value = azurerm_user_assigned_identity.uai.principal_id
 }
+
+output "aks_kubelet_identity_id" {
+  value = azurerm_kubernetes_cluster.privateaks.kubelet_identity[0].object_id
+}
