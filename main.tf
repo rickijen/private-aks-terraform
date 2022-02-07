@@ -256,7 +256,6 @@ resource "azurerm_role_assignment" "netcontributor-udr" {
   principal_id         = azurerm_user_assigned_identity.uai.principal_id
 }
 
-/*
 # User mode node pool - Linux
 resource "azurerm_kubernetes_cluster_node_pool" "usrpl1" {
   name                  = "upool1"
@@ -277,8 +276,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "usrpl1" {
     environment = "Premera"
   }
 }
-*/
-/*
+
 # Jumpbox for kubectl
 module "jumpbox" {
   source                  = "./modules/jumpbox"
@@ -290,7 +288,7 @@ module "jumpbox" {
   dns_zone_resource_group = azurerm_kubernetes_cluster.privateaks.node_resource_group
   vm_password             = var.jumpbox_password
 }
-*/
+
 /*
 sudo apt-get update && sudo apt-get install -y apt-transport-https gnupg2
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
