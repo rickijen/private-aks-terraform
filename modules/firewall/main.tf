@@ -92,11 +92,13 @@ resource "azurerm_firewall_application_rule_collection" "aksbasics" {
       "management.azure.com",
       "login.microsoftonline.com",
       "acs-mirror.azureedge.net",
-      "dc.services.visualstudio.com",
+      "dc.services.visualstudio.com",  # Azure Policy: Azure Policy add-on that sends telemetry data to applications insights endpoint.
       "*.opinsights.azure.com",
       "*.oms.opinsights.azure.com",
       "*.microsoftonline.com",
       "*.monitoring.azure.com",
+      "data.policy.core.windows.net",  # Azure Policy: This address is used to pull the Kubernetes policies and to report cluster compliance status to policy service.
+      "store.policy.core.windows.net"  # Azure Policy: This address is used to pull the Gatekeeper artifacts (constraint templates) of built-in policies.
     ]
 
     protocol {
@@ -157,7 +159,10 @@ resource "azurerm_firewall_application_rule_collection" "publicimages" {
       "auth.docker.io",
       "registry-1.docker.io",
       "production.cloudflare.docker.com",
-      "*.blob.core.windows.net" # This is needed for Bridge to K8S to work.
+      "*.blob.core.windows.net", # This is needed for Bridge to K8S to work.
+      "*.azure-api.net",         # APIM self-hosted gateway
+      "*.azure.com",             # APIM self-hosted gateway
+      "*.table.core.windows.net" # APIM self-hosted gateway
     ]
 
     protocol {
