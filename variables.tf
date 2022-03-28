@@ -72,3 +72,8 @@ variable "azure_policy_k8s_initiative" {
   type        = string
   description = "Kubernetes cluster pod security baseline standards for Linux-based workloads"
 }
+
+variable "keyvault_admin" {
+  type        = string
+  description = "Admin for Key Vault"  
+}
