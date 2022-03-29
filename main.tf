@@ -273,9 +273,11 @@ resource "azurerm_kubernetes_cluster_node_pool" "usrpl1" {
   upgrade_settings {
     max_surge = "30%"
   }
-
-  tags = {
-    environment = "Premera"
+  
+  lifecycle {
+    ignore_changes = [
+      tags,
+    ]
   }
 }
 
