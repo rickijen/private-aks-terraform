@@ -158,6 +158,8 @@ resource "azurerm_firewall_application_rule_collection" "publicimages" {
     target_fqdns = [
       "auth.docker.io",
       "registry-1.docker.io",
+      "k8s.gcr.io",
+      "storage.googleapis.com",
       "production.cloudflare.docker.com",
       "*.blob.core.windows.net", # This is needed for Bridge to K8S to work.
       "*.azure-api.net",         # APIM self-hosted gateway
