@@ -6,8 +6,16 @@ output "azurerm_log_analytics_workspace_name" {
   value = azurerm_log_analytics_workspace.default.name
 }
 
+output "azurerm_log_analytics_workspace_id" {
+  value = azurerm_log_analytics_workspace.default.id
+}
+
 output "kube_vnet_name" {
   value = "${random_pet.prefix.id}-kube-vnet"
+}
+
+output "kube_vnet_id" {
+  value = "${module.kube_network.vnet_id}"
 }
 
 output "hub_vnet_name" {
@@ -24,6 +32,10 @@ output "aks_subnet_prefix" {
 
 output "aks_identity_id" {
   value = azurerm_user_assigned_identity.uai.principal_id
+}
+
+output "aks_identity_name" {
+  value = azurerm_user_assigned_identity.uai.name
 }
 
 output "aks_kubelet_identity_id" {
