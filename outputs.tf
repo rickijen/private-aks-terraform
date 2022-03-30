@@ -15,7 +15,7 @@ output "kube_vnet_id" {
 }
 
 output "kube_pe_subnet_id" {
-  value = lookup("${module.kube_network.subnet_ids[subnet]}", "pe-subnet")
+  value = "${module.kube_network.subnet_ids["pe-subnet"]}"
 }
 
 output "hub_vnet_name" {
