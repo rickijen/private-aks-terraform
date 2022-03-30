@@ -75,7 +75,12 @@ module "kube_network" {
     {
       name : "aks-subnet"
       address_prefixes : ["10.10.5.0/24"]
-    }
+    },
+    {
+      # 10.10.6.0/24 is used for ACR PE subnet, need re-design here
+      name : "pe-subnet"
+      address_prefixes : ["10.10.7.0/24"]
+    }    
   ]
 }
 
